@@ -24,12 +24,12 @@ while true; do
   RUNNINGPROGS="XX $RUNNINGPROGS"
   NOW=$(date +%s)
   
-  if  ! [ -z "${RUNNINGPROGS##*$CAM111URL*}" ] && ! [ $(( $NOW - $LASTRUN1)) -lt $RECORDTIME ]; then
+  if [ -z "${ALARMCALL##*$CAM111HEX*}" ] &&  ! [ -z "${RUNNINGPROGS##*$CAM111URL*}" ] && ! [ $(( $NOW - $LASTRUN1)) -lt $RECORDTIME ]; then
     LASTRUN1=$NOW
     openRTSP -b 3000000 -V -v -4 $STREAMOPTIONS -d "$RECORDTIME"  "$CAM111URL$CAMURL" > "$SAVEMAP$FILEDATE$CAM111FILE" &
   fi
   
-  if  ! [ -z "${RUNNINGPROGS##*$CAM222URL*}" ] && ! [ $(( $NOW - $LASTRUN2)) -lt $RECORDTIME ]; then
+  if [ -z "${ALARMCALL##*$CAM111HEX*}" ] && ! [ -z "${RUNNINGPROGS##*$CAM222URL*}" ] && ! [ $(( $NOW - $LASTRUN2)) -lt $RECORDTIME ]; then
     LASTRUN2=$NOW
     openRTSP -b 3000000 -V -v -4 $STREAMOPTIONS -d "$RECORDTIME"  "$CAM222URL$CAMURL" > "$SAVEMAP$FILEDATE$CAM222FILE" &
   fi
