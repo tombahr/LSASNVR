@@ -35,5 +35,5 @@ while true; do
   fi
   
   #delete oldest files when alocated space is used
-  ls -tl $SAVEMAP*.mp4 | awk -vMFS=$MAXFOLDERSIZEMB '{x+=$5; if(x>MFS*1024*1024){ system("rm " $9) }}' | sh
+  ls -tl $SAVEMAP*.mp4 | awk -vMFS=$MAXFOLDERSIZEMB '{x+=$5; if(x>MFS*1024*1024){ system("rm " $9) }}'
 done
